@@ -12,7 +12,7 @@ mongoose.connect("mongodb+srv://user:pass@cluster0-rhzye.mongodb.net/test?retryW
 });
 mongoose.Promise = global.Promise;
 
-const port = 8081;
+const port = 8080;
 
 const app = express();
 app.use(morgan("dev"));
