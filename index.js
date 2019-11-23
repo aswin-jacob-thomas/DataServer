@@ -20,8 +20,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/images',express.static('images'));
-app.use('/data',dataRoutes);
-app.use('/user', userRoutes);
+app.use('/',dataRoutes);
+// app.use('/user', userRoutes);
 
 app.listen(port, (req, res, next) =>{
     console.log(`The app is starting at the port $port`);
