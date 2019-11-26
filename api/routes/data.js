@@ -30,7 +30,7 @@ const upload = multer({
 router.get("/", (req, res, next) => {
 
     data = Data.find()
-    .select("longitude latitude compassX compassY compassZ image")
+    .select("longitude latitude compass image")
     .exec()
     .then(docs => {
         const response = {
@@ -39,9 +39,7 @@ router.get("/", (req, res, next) => {
                 return {
                     latitude: doc.latitude,
                     longitude: doc.longitude,
-                    compassX: doc.compassX,
-                    compassY: doc.compassY,
-                    compassZ: doc.compassZ,
+                    compass: doc.compass,
                     image: doc.image
                 }
             })
@@ -63,9 +61,7 @@ router.post("/", upload.single('image'),(req, res, next)=>{
         _id: new mongoose.Types.ObjectId(),
         latitude: req.body.latitude,
         longitude: req.body.longitude,
-        compassX: req.body.compassX,
-        compassY: req.body.compassY,
-        compassZ: req.body.compassZ,
+        compass: req.body.compass,
         image: req.file.path
     });
 

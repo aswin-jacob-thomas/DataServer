@@ -13,16 +13,8 @@ const dataSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    compassX: {
+    compass: {
         type: Number,
-        required: true
-    },
-    compassY:{
-        type: Number,
-        required: true
-    },
-    compassZ:{
-        type:Number,
         required: true
     }
 });
