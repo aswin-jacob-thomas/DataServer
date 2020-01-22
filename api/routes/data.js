@@ -40,6 +40,7 @@ router.get("/", (req, res, next) => {
                     latitude: doc.latitude,
                     longitude: doc.longitude,
                     compass: doc.compass,
+                    classification: doc.classification,
                     image: doc.image
                 }
             })
@@ -62,6 +63,7 @@ router.post("/", upload.single('image'),(req, res, next)=>{
         latitude: req.body.latitude,
         longitude: req.body.longitude,
         compass: req.body.compass,
+        classification: req.body.classification,
         image: req.file.path
     });
 

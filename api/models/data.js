@@ -16,6 +16,10 @@ const dataSchema = mongoose.Schema({
     compass: {
         type: Number,
         required: true
+    },
+    classification: {
+        type: String,
+        required:true
     }
 });
 
