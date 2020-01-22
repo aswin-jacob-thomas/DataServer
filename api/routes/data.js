@@ -30,7 +30,7 @@ const upload = multer({
 router.get("/", (req, res, next) => {
 
     data = Data.find()
-    .select("longitude latitude compass image")
+    .select("longitude latitude compass image classification")
     .exec()
     .then(docs => {
         const response = {
