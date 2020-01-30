@@ -20,6 +20,10 @@ const dataSchema = mongoose.Schema({
     classification: {
         type: String,
         required:true
+    },
+    createdDate: {
+        type: Date, 
+        default: Date.now
     }
 });
 

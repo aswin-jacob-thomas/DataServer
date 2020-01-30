@@ -4,6 +4,10 @@ const multer = require('multer');
 const Data = require('../models/data');
 const mongoose = require('mongoose');
 
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
         cb(null, './images/');
@@ -30,7 +34,7 @@ const upload = multer({
 router.get("/", (req, res, next) => {
 
     data = Data.find()
-    .select("longitude latitude compass image classification")
+    .select("longitude latitude compass image classification createdDate")
     .exec()
     .then(docs => {
         const response = {
@@ -41,6 +45,7 @@ router.get("/", (req, res, next) => {
                     longitude: doc.longitude,
                     compass: doc.compass,
                     classification: doc.classification,
+                    createdDate: doc.createdDate,
                     image: doc.image
                 }
             })
@@ -83,4 +88,19 @@ router.post("/", upload.single('image'),(req, res, next)=>{
     })
 });
 
+// Delete everythin in the server
+router.delete("/", (req,res,next)=>{
+    Data.deleteMany({})
+    .then(result =>{
+        res.status(200).json({
+            message: 'Deleted all documents'
+        })
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
+        })
+    })
+});
 module.exports = router;
