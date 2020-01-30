@@ -8,6 +8,8 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
+const hostname = 'http://backend.digitaltwincities.info/'
+
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
         cb(null, './images/');
@@ -46,7 +48,7 @@ router.get("/", (req, res, next) => {
                     compass: doc.compass,
                     classification: doc.classification,
                     createdDate: doc.createdDate,
-                    image: doc.image
+                    image: hostname+doc.image
                 }
             })
         }
