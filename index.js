@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const dataRoutes = require('./api/routes/data');
 const userRoutes = require('./api/routes/user');
+const poleRoutes = require('./api/routes/pole');
 const mongoose = require('mongoose');
 
 mongoose.connect("mongodb+srv://user:pass@cluster0-rhzye.mongodb.net/test?retryWrites=true&w=majority",{
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use('/images',express.static('images'));
 app.use('/',dataRoutes);
+app.use('/poles',poleRoutes)
 // app.use('/user', userRoutes);
 
 app.listen(port, (req, res, next) =>{
