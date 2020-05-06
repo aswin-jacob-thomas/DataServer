@@ -17,6 +17,8 @@ router.get("/", (req, res, next) => {
             
             count: docs.length,
             data: docs.map(doc => {
+                let tmz_date = doc.dt_iso.split(' ');
+                let act_date = tmz_date[0]+' '+tmz_date[1];
                 return {
                     dt: doc.dt,
                     main:{
@@ -52,7 +54,8 @@ router.get("/", (req, res, next) => {
                     snow: {
                         snow_1h: doc.snow_1h,
                         snow_3h: doc.snow_3h
-                    }
+                    },
+                    dt_txt: act_date
                 }
             })
         }
@@ -67,5 +70,20 @@ router.get("/", (req, res, next) => {
     })
     
 })
+
+router.delete("/", (req,res,next)=>{
+    Allison.deleteMany({})
+    .then(result =>{
+        res.status(200).json({
+            message: 'Deleted all documents'
+        })
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
+        })
+    })
+});
 
 module.exports = router

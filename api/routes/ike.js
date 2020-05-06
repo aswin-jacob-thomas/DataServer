@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Rita = require('../models/rita');
+const Ike = require('../models/ike');
 const mongoose = require('mongoose');
 
 mongoose.set('useNewUrlParser', true);
@@ -8,11 +8,11 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
 router.get("/", (req, res, next) => {
-    data = Rita.find()
+    data = Ike.find()
     .select("dt dt_iso timezone city_name lat lon temp feels_like temp_min temp_max pressure sea_level grnd_level humidity wind_speed wind_deg rain_1h rain_3h snow_1h snow_3h clouds_all weather_id weather_main weather_description weather_icon")
     .exec()
     .then(docs => {
-        
+    
         const response = {
             
             count: docs.length,
@@ -72,7 +72,7 @@ router.get("/", (req, res, next) => {
 })
 
 router.delete("/", (req,res,next)=>{
-    Rita.deleteMany({})
+    Ike.deleteMany({})
     .then(result =>{
         res.status(200).json({
             message: 'Deleted all documents'

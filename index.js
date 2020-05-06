@@ -8,6 +8,7 @@ const poleRoutes = require('./api/routes/pole');
 const harveyRoutes = require('./api/routes/harvey');
 const ritaRoutes = require('./api/routes/rita');
 const allisonRoutes = require('./api/routes/allison')
+const ikeRoutes = require('./api/routes/ike')
 const mongoose = require('mongoose');
 
 mongoose.connect("mongodb+srv://user:pass@cluster0-rhzye.mongodb.net/test?retryWrites=true&w=majority",{
@@ -27,8 +28,10 @@ app.use('/images',express.static('images'));
 app.use('/',dataRoutes);
 app.use('/poles',poleRoutes)
 app.use('/harvey', harveyRoutes)
+app.use('/ike',ikeRoutes)
 app.use('/rita', ritaRoutes)
 app.use('/allison', allisonRoutes)
+
 // app.use('/user', userRoutes);
 
 app.listen(port, (req, res, next) =>{
