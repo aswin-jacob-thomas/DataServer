@@ -9,6 +9,7 @@ const harveyRoutes = require('./api/routes/harvey');
 const ritaRoutes = require('./api/routes/rita');
 const allisonRoutes = require('./api/routes/allison')
 const ikeRoutes = require('./api/routes/ike')
+const testRoutes = require('./api/routes/test')
 const mongoose = require('mongoose');
 
 mongoose.connect("mongodb+srv://user:pass@cluster0-rhzye.mongodb.net/test?retryWrites=true&w=majority",{
@@ -31,6 +32,7 @@ app.use('/harvey', harveyRoutes)
 app.use('/ike',ikeRoutes)
 app.use('/rita', ritaRoutes)
 app.use('/allison', allisonRoutes)
+app.use('/test', testRoutes)
 
 // app.use('/user', userRoutes);
 
